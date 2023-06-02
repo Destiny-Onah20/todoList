@@ -93,4 +93,18 @@ exports.deleteDone = async ( req , res ) => {
       message: error.message
     })
   }
-}
+};
+
+
+exports.deleteAllTask = async ( req , res ) => {
+  try {
+    await todoModel.destroy({where: {all: true}});
+    res.status(200).json({
+      message: "All tasks deleted."
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
+  }
+};
